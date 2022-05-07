@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test_helper">
         <activity
+            android:name=".createQuestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".createTestActivity"
             android:exported="false" />
         <activity

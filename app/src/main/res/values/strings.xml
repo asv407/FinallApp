@@ -4,5 +4,12 @@
     <string name="create_test">Создать тест</string>
     <string name="results">Результаты</string>
     <string name="next"> next </string>
+    <string name="stop"> stop </string>
     <string name="inputTestName"> введите название теста </string>
+    <string name="questionName"> введите текст вопроса </string>
+    <string name="varA"> введите первый вариант ответа </string>
+    <string name="varB"> введите второй вариант ответа </string>
+    <string name="varC"> введите третий вариант ответа </string>
+    <string name="varD"> введите четвёртый вариант ответа </string>
+    <string name="trueAns"> введите номер верного варианта ответа</string>
 </resources>
