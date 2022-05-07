@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -17,23 +20,17 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         int background_color = getResources().getColor(R.color.backgroung);
         getWindow().getDecorView().setBackgroundColor(background_color);
-        View.OnClickListener listener=new View.OnClickListener() {
+        File file = new File("tests.csv");
+        final Button b = (Button)findViewById(R.id.create_Test);
+        b.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick (View v){
-                switch (v.getId())
-                {
-                    case R.id.pass_Test:
-
-                    case R.id.create_Test:
-
-                        Intent intent = new Intent(MainActivity.this, createTestActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.results:
-
-                }
+            public void onClick (View v)
+            {
+                Intent intent = new Intent(MainActivity.this, createTestActivity.class);
+                startActivity(intent);
             }
-        };
+        });
+
     }
 
 
