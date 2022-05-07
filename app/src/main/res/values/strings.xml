@@ -12,4 +12,5 @@
     <string name="varC"> введите третий вариант ответа </string>
     <string name="varD"> введите четвёртый вариант ответа </string>
     <string name="trueAns"> введите номер верного варианта ответа</string>
+    <string name="balls"> введите количество баллов за вопрос</string>
 </resources>

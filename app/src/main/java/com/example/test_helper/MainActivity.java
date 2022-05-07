@@ -21,6 +21,15 @@ public class MainActivity extends AppCompatActivity
         int background_color = getResources().getColor(R.color.backgroung);
         getWindow().getDecorView().setBackgroundColor(background_color);
         File file = new File("tests.csv");
+        final Button a = (Button)findViewById(R.id.pass_Test);
+        a.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick (View v)
+            {
+                Intent intent = new Intent(MainActivity.this, passTestActivity.class);
+                startActivity(intent);
+            }
+        });
         final Button b = (Button)findViewById(R.id.create_Test);
         b.setOnClickListener( new View.OnClickListener() {
             @Override

@@ -68,6 +68,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/varD" />
+    <EditText
+        android:id="@+id/balls"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="@string/balls"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trueAns" />
 
     <Button
         android:id="@+id/next_Button"
@@ -79,7 +89,7 @@
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trueAns" />
+        app:layout_constraintTop_toBottomOf="@id/balls" />
 
     <Button
         android:id="@+id/finish_Button"
@@ -91,5 +101,6 @@
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trueAns" />
+        app:layout_constraintTop_toBottomOf="@id/balls" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
