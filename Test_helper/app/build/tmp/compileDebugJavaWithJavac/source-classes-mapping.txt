@@ -1,0 +1,6 @@
+com/example/test_helper/BuildConfig.java
+ com.example.test_helper.BuildConfig
+com/example/test_helper/createTestActivity.java
+ com.example.test_helper.createTestActivity
+com/example/test_helper/MainActivity.java
+ com.example.test_helper.MainActivity
