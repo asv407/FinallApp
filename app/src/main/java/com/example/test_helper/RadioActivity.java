@@ -51,7 +51,7 @@ public class RadioActivity extends AppCompatActivity
         try
         {
             File sdcard = Environment.getExternalStorageDirectory();
-            File f = new File(sdcard,"tests.txt");
+            File f = new File(sdcard,"tests.csv");
             reader = new BufferedReader(new FileReader(f));
             String line = reader.readLine();
             while (line != null) {
