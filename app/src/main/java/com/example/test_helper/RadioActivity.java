@@ -55,7 +55,7 @@ public class RadioActivity extends AppCompatActivity
             String line = reader.readLine();
             while (line != null) {
                 String[] words = line.split(";");
-                if(words[0] != name)
+                if(!name.equals(words[0]))
                 {
                     continue;
                 }
