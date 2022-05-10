@@ -10,13 +10,13 @@ import android.widget.EditText;
 
 public class passTestActivity extends AppCompatActivity
 {
-
+    public EditText name;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pass_test);
-        EditText name = (EditText)findViewById(R.id.testName);
+        name = (EditText)findViewById(R.id.testName);
         final Button a = (Button)findViewById(R.id.next_Button);
         a.setOnClickListener( new View.OnClickListener() {
             @Override
