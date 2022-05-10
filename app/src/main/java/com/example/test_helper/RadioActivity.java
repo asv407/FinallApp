@@ -58,13 +58,16 @@ public class RadioActivity extends AppCompatActivity
                 String[] words = line.split(";");
                 if(!name.equals(words[0]))
                 {
+                    line = reader.readLine();
                     continue;
                 }
                 words[1] = words[1].replace('~', '\n');
                 arrayList.add(words);
                 line = reader.readLine();
             }
-        } catch (IOException e){}
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         if(arrayList.size() == 0)
         {
             Intent intent = new Intent(RadioActivity.this, passTestActivity.class);
@@ -131,14 +134,18 @@ public class RadioActivity extends AppCompatActivity
                     intent.putExtra("maxBalls", maxBalls);
                     intent.putExtra("nameTest", name);
                     intent.putExtra("count", arrayList.size());
+                    startActivity(intent);
                 }
-                words = arrayList.get(i);
-                radioGroup11.check(R.id.radio1);
-                textView.setText(words[1]);
-                radioButton1.setText(words[2]);
-                radioButton2.setText(words[3]);
-                radioButton3.setText(words[4]);
-                radioButton4.setText(words[5]);
+                else
+                {
+                    words = arrayList.get(i);
+                    radioGroup11.check(R.id.radio1);
+                    textView.setText(words[1]);
+                    radioButton1.setText(words[2]);
+                    radioButton2.setText(words[3]);
+                    radioButton3.setText(words[4]);
+                    radioButton4.setText(words[5]);
+                }
 
             }
         });
