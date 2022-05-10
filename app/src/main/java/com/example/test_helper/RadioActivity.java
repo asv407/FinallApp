@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -49,9 +50,9 @@ public class RadioActivity extends AppCompatActivity
 
         try
         {
-            File f = new File("D://ChangZhi/tests.csv");
-            FileReader fr = new FileReader(f);
-            reader = new BufferedReader(fr);
+            File sdcard = Environment.getExternalStorageDirectory();
+            File f = new File(sdcard,"tests.txt");
+            reader = new BufferedReader(new FileReader(f));
             String line = reader.readLine();
             while (line != null) {
                 String[] words = line.split(";");
