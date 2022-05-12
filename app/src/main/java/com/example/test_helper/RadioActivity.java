@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class RadioActivity extends AppCompatActivity
 {
+
     public RadioGroup radioGroup11;
     public RadioButton radioButton1;
     public RadioButton radioButton2;
@@ -39,6 +40,8 @@ public class RadioActivity extends AppCompatActivity
     {
         setContentView(R.layout.activity_radio);
         super.onCreate(savedInstanceState);
+        int background_color = getResources().getColor(R.color.backgroung);
+        getWindow().getDecorView().setBackgroundColor(background_color);
         Bundle arguments = getIntent().getExtras();
         name = arguments.get("testName").toString();
         radioGroup11 = findViewById(R.id.radioGroup1);
@@ -55,13 +58,15 @@ public class RadioActivity extends AppCompatActivity
             reader = new BufferedReader(new FileReader(f));
             String line = reader.readLine();
             while (line != null) {
+                line = line.replace('~', '\n');
                 String[] words = line.split(";");
                 if(!name.equals(words[0]))
                 {
                     line = reader.readLine();
+
                     continue;
                 }
-                words[1] = words[1].replace('~', '\n');
+
                 arrayList.add(words);
                 line = reader.readLine();
             }
@@ -71,6 +76,7 @@ public class RadioActivity extends AppCompatActivity
         if(arrayList.size() == 0)
         {
             Intent intent = new Intent(RadioActivity.this, passTestActivity.class);
+            intent.putExtra("isNorm", false);
             startActivity(intent);
         }
         else
@@ -128,7 +134,7 @@ public class RadioActivity extends AppCompatActivity
                 i++;
                 if(i >= arrayList.size())
                 {
-                    Intent intent = new Intent(RadioActivity.this, resultsActivity.class);
+                    Intent intent = new Intent(RadioActivity.this, resultsBackgroundActivity.class);
                     intent.putExtra("result", res);
                     intent.putExtra("countTrue", countTrueAns);
                     intent.putExtra("maxBalls", maxBalls);

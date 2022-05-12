@@ -3,8 +3,8 @@
     <string name="pass_test">Пройти тест</string>
     <string name="create_test">Создать тест</string>
     <string name="results">Результаты</string>
-    <string name="next"> next </string>
-    <string name="stop"> stop </string>
+    <string name="next"> Далее </string>
+    <string name="stop">В начало</string>
     <string name="inputTestName"> введите название теста </string>
     <string name="questionName"> введите текст вопроса </string>
     <string name="varA"> введите первый вариант ответа </string>

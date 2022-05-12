@@ -16,16 +16,16 @@ public class resultsActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
         Bundle arguments = getIntent().getExtras();
-        String s = "Поздравляем, вы прошли тест ";
-        s += String.valueOf(arguments.getString("nameTest"));
-        s += "\nРезультаты:\n";
+        String s = "";
         s += String.valueOf(arguments.getInt("result"));
         s += " баллов из ";
         s += String.valueOf(arguments.getInt("maxBalls"));
-        s += "\n";
+        s += "\n\n\n";
+        s += " правильных ответов ";
         s += String.valueOf(arguments.getInt("countTrue"));
-        s += " правильных ответов из ";
+        s += " из ";
         s += String.valueOf(arguments.getInt("count"));
         TextView textView = findViewById(R.id.text);
         textView.setText(s);

@@ -16,6 +16,8 @@ public class createTestActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_test);
+        int background_color = getResources().getColor(R.color.backgroung);
+        getWindow().getDecorView().setBackgroundColor(background_color);
         final Button b = (Button)findViewById(R.id.next_Button);
         EditText name = (EditText)findViewById(R.id.testName);
         b.setOnClickListener( new View.OnClickListener() {

@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick (View v)
             {
                 Intent intent = new Intent(MainActivity.this, passTestActivity.class);
+                intent.putExtra("isNorm", true);
                 startActivity(intent);
             }
         });

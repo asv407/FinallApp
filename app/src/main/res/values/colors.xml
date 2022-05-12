@@ -12,4 +12,5 @@
     <color name="backgroung">#F0F8FF</color>
     <color name="buttons">#9DB1CC</color>
     <color name="best_black">#282828</color>
+    <color name="best_white">#FFFFF0</color>
 </resources>

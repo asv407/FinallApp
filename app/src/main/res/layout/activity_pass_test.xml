@@ -22,6 +22,7 @@
         android:id="@+id/next_Button"
         android:layout_width="142dp"
         android:layout_height="50dp"
+        style="@style/Widget.AppCompat.Button.Small"
         android:layout_marginEnd="136dp"
         android:text="@string/next"
         android:textColor="@color/best_black"
