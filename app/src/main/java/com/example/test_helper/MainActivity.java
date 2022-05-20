@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
                     REQUEST_CODE_READ_EXTERNAL_STORAGE);
         }
-        final Button a = (Button)findViewById(R.id.pass_Test);
+        final ImageButton a = (ImageButton)findViewById(R.id.pass_Test);
         a.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick (View v)
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        final Button b = (Button)findViewById(R.id.create_Test);
+        final ImageButton b = (ImageButton)findViewById(R.id.create_Test);
         b.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick (View v)

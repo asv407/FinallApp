@@ -5,6 +5,9 @@
     <string name="results">Результаты</string>
     <string name="next"> Далее </string>
     <string name="stop">В начало</string>
+    <string name="dialog_title">Некоторые поля заполнены неверно</string>
+    <string name="dialog_message_balls">Количество баллов должно быть числом</string>
+    <string name="dialog_message">Номер правильного варианта ответа - целое число от 1 до 4</string>
     <string name="inputTestName"> введите название теста </string>
     <string name="questionName"> введите текст вопроса </string>
     <string name="varA"> введите первый вариант ответа </string>
