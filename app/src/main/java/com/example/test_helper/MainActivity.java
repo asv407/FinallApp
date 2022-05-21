@@ -8,8 +8,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -28,7 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
 {
 
-    private static final int REQUEST_CODE_MANAGE_EXTERNAL_STORAGE = 100;
+    private static final int REQUEST_CODE_MANAGE_EXTERNAL_STORAGE = 101;
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 100;
 
     @Override
@@ -42,21 +45,26 @@ public class MainActivity extends AppCompatActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE);
 
-            if (permissionStatus == PackageManager.PERMISSION_GRANTED)
+            if(!Environment.isExternalStorageManager())
             {
-
-            } else
-            {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE},
-                        REQUEST_CODE_MANAGE_EXTERNAL_STORAGE);
+                try {
+                    Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
+                    startActivity(intent);
+                } catch (Exception ex){
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    startActivity(intent);
+                }
             }
         } else {
             int permissionStatus1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-            if (permissionStatus1 == PackageManager.PERMISSION_GRANTED) {
+            if (permissionStatus1 != PackageManager.PERMISSION_GRANTED)
+            {
 
-            } else {
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
             }
         }
