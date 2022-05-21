@@ -8,6 +8,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private static final int REQUEST_CODE_MANAGE_EXTERNAL_STORAGE = 100;
-    private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 100;
+    private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,13 +39,26 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         int background_color = getResources().getColor(R.color.backgroung);
         getWindow().getDecorView().setBackgroundColor(background_color);
-        int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE);
 
-        if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
+            if (permissionStatus == PackageManager.PERMISSION_GRANTED)
+            {
 
+            } else
+            {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE},
+                        REQUEST_CODE_MANAGE_EXTERNAL_STORAGE);
+            }
         } else {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
-                    REQUEST_CODE_READ_EXTERNAL_STORAGE);
+            int permissionStatus1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (permissionStatus1 == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
+            }
         }
         final ImageButton a = (ImageButton)findViewById(R.id.pass_Test);
         a.setOnClickListener( new View.OnClickListener() {

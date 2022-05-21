@@ -5,23 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RadioActivity">
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <TextView
         android:id="@+id/textQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/best_black"
         android:textSize="24sp"
         android:textStyle="bold|italic"
-        android:text="ds"
         />
     <RadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textQuestion"
-        app:layout_constraintLeft_toLeftOf="parent"
         >
         <RadioButton
             android:id="@+id/radio1"
@@ -64,18 +69,23 @@
             android:text="example 4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/radio3"
-            tools:layout_editor_absoluteY="220dp" />
+             />
     </RadioGroup>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
     <Button
         android:id="@+id/nexts_Button"
         android:layout_width="142dp"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_height="50dp"
-        android:layout_marginEnd="136dp"
         android:text="@string/next"
         android:textColor="@color/best_black"
         android:textSize="24sp"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/radioGroup1" />
+        />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

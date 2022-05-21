@@ -6,102 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".createQuestionActivity">
 
-    <EditText
-        android:id="@+id/questionName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="@string/questionName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/varA"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/varA"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/questionName" />
-    <EditText
-        android:id="@+id/varB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/varB"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/varA" />
-    <EditText
-        android:id="@+id/varC"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/varC"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/varB" />
-    <EditText
-        android:id="@+id/varD"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/varD"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/varC" />
-    <EditText
-        android:id="@+id/trueAns"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/trueAns"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/varD" />
-    <EditText
-        android:id="@+id/balls"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/balls"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trueAns" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/next_Button"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="153dp"
-        android:layout_height="56dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/next"
-        android:textColor="@color/best_black"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/balls" />
 
-    <Button
-        android:id="@+id/finish_Button"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="153dp"
-        android:layout_height="56dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/stop"
-        android:textColor="@color/best_black"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/balls" />
+            <EditText
+                android:id="@+id/questionName"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:hint="@string/questionName" />
 
+            <EditText
+                android:id="@+id/varA"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:hint="@string/varA" />
+
+            <EditText
+                android:id="@+id/varB"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:hint="@string/varB" />
+
+            <EditText
+                android:id="@+id/varC"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:hint="@string/varC" />
+
+            <EditText
+                android:id="@+id/varD"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:hint="@string/varD" />
+
+            <EditText
+                android:id="@+id/trueAns"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:hint="@string/trueAns" />
+
+            <EditText
+                android:id="@+id/balls"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:hint="@string/balls" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+                <Button
+                    android:id="@+id/next_Button"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="@string/next"
+                    android:textColor="@color/best_black"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
+
+                <Button
+                    android:id="@+id/finish_Button"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="153dp"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/stop"
+                    android:textColor="@color/best_black"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/balls" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
