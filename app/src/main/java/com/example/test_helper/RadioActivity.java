@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -40,8 +41,7 @@ public class RadioActivity extends AppCompatActivity
     {
         setContentView(R.layout.activity_radio);
         super.onCreate(savedInstanceState);
-        int background_color = getResources().getColor(R.color.backgroung);
-        getWindow().getDecorView().setBackgroundColor(background_color);
+
         Bundle arguments = getIntent().getExtras();
         name = arguments.get("testName").toString();
         radioGroup11 = findViewById(R.id.radioGroup1);
@@ -90,7 +90,7 @@ public class RadioActivity extends AppCompatActivity
         }
 
 
-        final Button b = findViewById(R.id.nexts_Button);
+        final ImageButton b = (ImageButton) findViewById(R.id.nexts_Button);
         b.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick (View v)

@@ -1,27 +1,19 @@
 package com.example.test_helper;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.text.Editable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 public class createQuestionActivity extends AppCompatActivity
 {
@@ -40,14 +32,14 @@ public class createQuestionActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_question);
-        int background_color = getResources().getColor(R.color.backgroung);
-        getWindow().getDecorView().setBackgroundColor(background_color);
         File sdcard = Environment.getExternalStorageDirectory();
         File f = new File(sdcard,"tests.csv");
         try
         {
             writer = new FileOutputStream(f, true);
-        }catch (IOException e){}
+        } catch (IOException e)
+        {
+        }
         Bundle arguments = getIntent().getExtras();
         name = arguments.get("testName").toString();
         questionName = (EditText) findViewById(R.id.questionName);
@@ -57,11 +49,12 @@ public class createQuestionActivity extends AppCompatActivity
         varD = (EditText) findViewById(R.id.varD);
         trueAns = (EditText) findViewById(R.id.trueAns);
         balls = (EditText) findViewById(R.id.balls);
-        final Button b = (Button)findViewById(R.id.next_Button);
-        final Button c = (Button)findViewById(R.id.finish_Button);
-        b.setOnClickListener( new View.OnClickListener() {
+        final ImageButton b = (ImageButton) findViewById(R.id.next_Buttons);
+        final ImageButton c = (ImageButton) findViewById(R.id.finish_Button);
+        b.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick (View v)
+            public void onClick(View v)
             {
                 String newQuestion = name;
                 newQuestion += ";";

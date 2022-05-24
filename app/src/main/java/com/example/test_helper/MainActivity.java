@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int background_color = getResources().getColor(R.color.backgroung);
-        getWindow().getDecorView().setBackgroundColor(background_color);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE);
 

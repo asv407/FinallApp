@@ -14,82 +14,105 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <EditText
-                android:id="@+id/questionName"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:hint="@string/questionName" />
-
-            <EditText
-                android:id="@+id/varA"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:hint="@string/varA" />
-
-            <EditText
-                android:id="@+id/varB"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:hint="@string/varB" />
-
-            <EditText
-                android:id="@+id/varC"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:hint="@string/varC" />
-
-            <EditText
-                android:id="@+id/varD"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:hint="@string/varD" />
-
-            <EditText
-                android:id="@+id/trueAns"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:hint="@string/trueAns" />
-
-            <EditText
-                android:id="@+id/balls"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:hint="@string/balls" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
-                <Button
-                    android:id="@+id/next_Button"
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:text="@string/next"
-                    android:textColor="@color/best_black"
-                    android:textSize="24sp"
-                    android:textStyle="bold|italic" />
+                android:id="@+id/backGround"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_emp"
+                android:orientation="vertical"/>
 
-                <Button
-                    android:id="@+id/finish_Button"
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="153dp"
-                    android:layout_height="56dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="@string/stop"
-                    android:textColor="@color/best_black"
-                    android:textSize="24sp"
-                    android:textStyle="bold|italic"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/balls" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/questionName"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/questionName"
+                    android:textColor="@color/buttons1"
+                    android:textColorHint="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/varA"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/varA"
+                    android:textColor="@color/buttons1"
+                    android:textColorHint="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/varB"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/varB"
+                    android:textColor="@color/buttons1"
+                    android:textColorHint="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/varC"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/varC"
+                    android:textColor="@color/buttons1"
+                    android:textColorHint="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/varD"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/varD"
+                    android:textColor="@color/buttons1"
+                    android:textColorHint="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/trueAns"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/trueAns"
+                    android:textColor="@color/buttons1"
+                    android:textColorHint="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/balls"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:textColor="@color/buttons1"
+                    android:textColorHint="@color/buttons1"
+                    android:hint="@string/balls" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/finish_Button"
+                        android:src="@drawable/home_button"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageButton
+                        android:id="@+id/next_Buttons"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/next_button" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

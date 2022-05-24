@@ -1,25 +1,24 @@
 package com.example.test_helper;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class passTestActivity extends AppCompatActivity
 {
@@ -47,20 +46,23 @@ public class passTestActivity extends AppCompatActivity
             File f = new File(sdcard,"tests.csv");
             BufferedReader reader = new BufferedReader(new FileReader(f));
             String line = reader.readLine();
-            while (line != null) {
+            while (line != null)
+            {
                 line = line.replace('~', '\n');
                 String[] words = line.split(";");
                 s.add(words[0]);
                 line = reader.readLine();
             }
-        } catch (IOException e){
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
-        String[] names = new String[s.size()];
-        int i = 0;
-        for(String ii : s)
+        String[] names = new String[s.size() + 1];
+        names[0] = "Выберите тест";
+        int i = 1;
+        for (String ii : s)
         {
-            if(ii.equals(""))
+            if (ii.equals(""))
             {
                 continue;
             }
@@ -76,7 +78,10 @@ public class passTestActivity extends AppCompatActivity
         {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
+                int text_color = getResources().getColor(R.color.buttons1);
                 item = (String) parent.getItemAtPosition(position);
+                ((TextView) parent.getChildAt(0)).setTextColor(text_color);
+                ((TextView) parent.getChildAt(0)).setTextSize(22);
                 ban = true;
             }
 
@@ -86,22 +91,32 @@ public class passTestActivity extends AppCompatActivity
             }
         };
         spinner.setOnItemSelectedListener(itemSelectedListener);
-        final Button a = (Button)findViewById(R.id.next_Button);
-        a.setOnClickListener( new View.OnClickListener() {
+        final ImageButton a = (ImageButton) findViewById(R.id.next_Button);
+        final ImageButton b = (ImageButton) findViewById(R.id.home_Button);
+        a.setOnClickListener(new View.OnClickListener()
+        {
 
-            public void onClick (View v)
+            public void onClick(View v)
             {
-                if(ban)
+                if (ban)
                 {
                     Intent intent = new Intent(passTestActivity.this, RadioActivity.class);
                     intent.putExtra("testName", item);
                     startActivity(intent);
-                }
-                else
+                } else
                 {
-                    Toast toast = Toast.makeText(getBaseContext(), "Пожалуйста, выберите тест",Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getBaseContext(), "Пожалуйста, выберите тест", Toast.LENGTH_LONG);
                     toast.show();
                 }
+            }
+        });
+        b.setOnClickListener(new View.OnClickListener()
+        {
+
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(passTestActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
