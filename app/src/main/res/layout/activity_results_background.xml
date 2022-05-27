@@ -6,46 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".resultsBackgroundActivity">
 
-    <TextView
-        style="@style/MyTextStyle"
-        android:id="@+id/text"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:text="ds"
-        android:textColor="@color/best_black"
-        android:textSize="36sp"
-        android:textStyle="bold|italic"
+        android:layout_height="match_parent"
+        android:background="@drawable/results_show"
+        android:orientation="vertical"
+        tools:context=".MainActivity" />
 
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/finish_Button"
-        android:layout_width="156dp"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_height="68dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="28dp"
-        android:text="Результат"
-        android:textColor="@color/best_white"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text" />
+        <TextView
+            android:id="@+id/text"
+            style="@style/MyTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginRight="60dp"
+            android:text="@string/stop"
+            android:textColor="@color/bestPink"
+            android:textSize="28sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/finish"
-        android:layout_width="156dp"
-        android:layout_height="68dp"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_marginLeft="212dp"
-        android:layout_marginTop="28dp"
-        android:text="В начало"
-        android:textColor="@color/best_white"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/finish"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/home_button" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/trueAns"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/info_button" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

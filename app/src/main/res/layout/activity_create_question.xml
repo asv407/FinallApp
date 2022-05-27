@@ -22,8 +22,8 @@
                 android:id="@+id/backGround"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/background_emp"
-                android:orientation="vertical"/>
+                android:background="@drawable/phone_1"
+                android:orientation="vertical" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,40 +39,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:hint="@string/questionName"
-                    android:textColor="@color/buttons1"
-                    android:textColorHint="@color/buttons1" />
+                    android:textColor="@color/buttons1" />
 
                 <EditText
                     android:id="@+id/varA"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:hint="@string/varA"
-                    android:textColor="@color/buttons1"
-                    android:textColorHint="@color/buttons1" />
+                    android:textColor="@color/buttons1" />
 
                 <EditText
                     android:id="@+id/varB"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:hint="@string/varB"
-                    android:textColor="@color/buttons1"
-                    android:textColorHint="@color/buttons1" />
+                    android:textColor="@color/buttons1" />
 
                 <EditText
                     android:id="@+id/varC"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:hint="@string/varC"
-                    android:textColor="@color/buttons1"
-                    android:textColorHint="@color/buttons1" />
+                    android:textColor="@color/buttons1" />
 
                 <EditText
                     android:id="@+id/varD"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:hint="@string/varD"
-                    android:textColor="@color/buttons1"
-                    android:textColorHint="@color/buttons1" />
+                    android:textColor="@color/buttons1" />
 
                 <EditText
                     android:id="@+id/trueAns"
@@ -80,14 +75,14 @@
                     android:layout_height="fill_parent"
                     android:hint="@string/trueAns"
                     android:textColor="@color/buttons1"
-                    android:textColorHint="@color/buttons1" />
+                    android:inputType="number" />
 
                 <EditText
                     android:id="@+id/balls"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:textColor="@color/buttons1"
-                    android:textColorHint="@color/buttons1"
+                    android:inputType="number"
                     android:hint="@string/balls" />
 
                 <LinearLayout

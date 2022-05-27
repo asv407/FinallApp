@@ -22,18 +22,20 @@ import java.util.HashSet;
 
 public class passTestActivity extends AppCompatActivity
 {
-    public EditText name;
-    public String item;
-    public boolean ban = false;
+    private EditText name;
+    private String item;
+    private boolean ban = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pass_test);
+        RadioActivity.tests.clear();
         int background_color = getResources().getColor(R.color.backgroung);
         getWindow().getDecorView().setBackgroundColor(background_color);
         Bundle arguments = getIntent().getExtras();
-        if(!arguments.getBoolean("isNorm"))
+        if (!arguments.getBoolean("isNorm"))
         {
             Toast toast = Toast.makeText(this, "Не удалось найти тест!",Toast.LENGTH_LONG);
             toast.show();
@@ -50,6 +52,7 @@ public class passTestActivity extends AppCompatActivity
             {
                 line = line.replace('~', '\n');
                 String[] words = line.split(";");
+                words[0] = words[0].replace('ў', ';');
                 s.add(words[0]);
                 line = reader.readLine();
             }
@@ -78,7 +81,7 @@ public class passTestActivity extends AppCompatActivity
         {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                int text_color = getResources().getColor(R.color.buttons1);
+                int text_color = getResources().getColor(R.color.buttons2);
                 item = (String) parent.getItemAtPosition(position);
                 ((TextView) parent.getChildAt(0)).setTextColor(text_color);
                 ((TextView) parent.getChildAt(0)).setTextSize(22);

@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,23 +18,24 @@ import java.io.IOException;
 
 public class createQuestionActivity extends AppCompatActivity
 {
-    public EditText questionName;
-    public boolean ban = true;
-    public EditText varA;
-    public EditText varB;
-    public EditText varC;
-    public EditText varD;
-    public EditText trueAns;
-    public EditText balls;
-    public FileOutputStream writer;
-    public String name;
+    private EditText questionName;
+    private boolean ban = true;
+    private EditText varA;
+    private EditText varB;
+    private EditText varC;
+    private EditText varD;
+    private EditText trueAns;
+    private EditText balls;
+    private FileOutputStream writer;
+    private String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_question);
         File sdcard = Environment.getExternalStorageDirectory();
-        File f = new File(sdcard,"tests.csv");
+        File f = new File(sdcard, "tests.csv");
         try
         {
             writer = new FileOutputStream(f, true);
@@ -57,23 +59,35 @@ public class createQuestionActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 String newQuestion = name;
+                newQuestion = newQuestion.replace(';', 'ў');
                 newQuestion += ";";
-                newQuestion += questionName.getText().toString();
+                String add;
+                add = questionName.getText().toString();
+                add = add.replace(';', 'ў');
+                newQuestion += add;
                 newQuestion += ";";
-                newQuestion += varA.getText().toString();
+                add = varA.getText().toString();
+                add = add.replace(';', 'ў');
+                newQuestion += add;
                 newQuestion += ";";
-                newQuestion += varB.getText().toString();
+                add = varB.getText().toString();
+                add = add.replace(';', 'ў');
+                newQuestion += add;
                 newQuestion += ";";
-                newQuestion += varC.getText().toString();
+                add = varC.getText().toString();
+                add = add.replace(';', 'ў');
+                newQuestion += add;
                 newQuestion += ";";
-                newQuestion += varD.getText().toString();
+                add = varD.getText().toString();
+                add = add.replace(';', 'ў');
+                newQuestion += add;
                 newQuestion += ";";
-                newQuestion += trueAns.getText().toString();
                 ban = false;
+                int numTrue = 0;
                 try
                 {
                     int gf = Integer.parseInt(trueAns.getText().toString());
-                    if(gf > 4 || gf <= 0)
+                    if (gf > 4 || gf <= 0)
                     {
                         AlertDialog.Builder builder = new AlertDialog.Builder(createQuestionActivity.this);
                         builder.setTitle(R.string.dialog_title);
@@ -85,6 +99,9 @@ public class createQuestionActivity extends AppCompatActivity
                         });
                         builder.show();
                         ban = true;
+                    } else
+                    {
+                        numTrue = gf;
                     }
                 }catch (NumberFormatException e){
                     AlertDialog.Builder builder = new AlertDialog.Builder(createQuestionActivity.this);
@@ -103,18 +120,47 @@ public class createQuestionActivity extends AppCompatActivity
                 }
                 if(!ban)
                 {
+                    if (numTrue == 1)
+                    {
+                        String str = varA.getText().toString();
+                        str = str.replace('ў', ';');
+                        str = str.replace('~', '\n');
+                        int hash = str.hashCode();
+                        newQuestion += Integer.toString(hash);
+                    }
+                    if (numTrue == 2)
+                    {
+                        String str = varB.getText().toString().replace('ў', ';');
+                        int hash = str.replace('~', '\n').hashCode();
+                        newQuestion += Integer.toString(hash);
+                    }
+                    if (numTrue == 3)
+                    {
+                        String str = varC.getText().toString().replace('ў', ';');
+                        int hash = str.replace('~', '\n').hashCode();
+                        newQuestion += Integer.toString(hash);
+                    }
+                    if (numTrue == 4)
+                    {
+                        String str = varD.getText().toString().replace('ў', ';');
+                        int hash = str.replace('~', '\n').hashCode();
+                        newQuestion += Integer.toString(hash);
+                    }
                     newQuestion += ";";
-                    newQuestion += balls.getText().toString();
+                    add = balls.getText().toString();
+                    newQuestion += add;
                     try
                     {
                         int gf = Integer.parseInt(balls.getText().toString());
-                    }catch (IllegalArgumentException | NullPointerException e){
+                    } catch (IllegalArgumentException | NullPointerException e)
+                    {
                         AlertDialog.Builder builder = new AlertDialog.Builder(createQuestionActivity.this);
                         builder.setTitle(R.string.dialog_title);
                         builder.setMessage(R.string.dialog_message_balls);
                         builder.setCancelable(true);
                         builder.setIcon(R.drawable.icon);
-                        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
+                        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                        { // Кнопка ОК
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss(); // Отпускает диалоговое окно
@@ -137,6 +183,8 @@ public class createQuestionActivity extends AppCompatActivity
                         try
                         {
                             writer.write(newQuestion.getBytes());
+                            Toast toast = Toast.makeText(createQuestionActivity.this, "Вопрос успешно добавлен!", Toast.LENGTH_LONG);
+                            toast.show();
                         } catch (IOException e)
                         {
                         }
