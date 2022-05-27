@@ -33,13 +33,8 @@ public class MainActivity extends AppCompatActivity
 
     private static final int REQUEST_CODE_MANAGE_EXTERNAL_STORAGE = 101;
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 100;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
+    private void getPermissions()
     {
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE);
 
@@ -66,7 +61,15 @@ public class MainActivity extends AppCompatActivity
                         REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
             }
         }
-        final ImageButton a = (ImageButton)findViewById(R.id.pass_Test);
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        getPermissions();
+        final ImageButton a = findViewById(R.id.pass_Test);
         a.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick (View v)
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        final ImageButton b = (ImageButton)findViewById(R.id.create_Test);
+        final ImageButton b = findViewById(R.id.create_Test);
         b.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick (View v)

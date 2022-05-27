@@ -25,7 +25,43 @@ public class passTestActivity extends AppCompatActivity
     private EditText name;
     private String item;
     private boolean ban = false;
+    private void createSpinner(HashSet<String> s)
+    {
+        String[] names = new String[s.size() + 1];
+        names[0] = "Выберите тест";
+        int i = 1;
+        for (String ii : s)
+        {
+            if (ii.equals(""))
+            {
+                continue;
+            }
+            names[i] = ii;
+            i++;
+        }
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, names);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                int text_color = getResources().getColor(R.color.best_black);
+                item = (String) parent.getItemAtPosition(position);
+                ((TextView) parent.getChildAt(0)).setTextColor(text_color);
+                ((TextView) parent.getChildAt(0)).setTextSize(22);
+                ban = true;
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+                ban = false;
+            }
+        };
+        spinner.setOnItemSelectedListener(itemSelectedListener);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -60,42 +96,9 @@ public class passTestActivity extends AppCompatActivity
         {
             e.printStackTrace();
         }
-        String[] names = new String[s.size() + 1];
-        names[0] = "Выберите тест";
-        int i = 1;
-        for (String ii : s)
-        {
-            if (ii.equals(""))
-            {
-                continue;
-            }
-            names[i] = ii;
-            i++;
-        }
-        Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, names);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener()
-        {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                int text_color = getResources().getColor(R.color.buttons2);
-                item = (String) parent.getItemAtPosition(position);
-                ((TextView) parent.getChildAt(0)).setTextColor(text_color);
-                ((TextView) parent.getChildAt(0)).setTextSize(22);
-                ban = true;
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-                ban = false;
-            }
-        };
-        spinner.setOnItemSelectedListener(itemSelectedListener);
-        final ImageButton a = (ImageButton) findViewById(R.id.next_Button);
-        final ImageButton b = (ImageButton) findViewById(R.id.home_Button);
+        createSpinner(s);
+        final ImageButton a = findViewById(R.id.next_Button);
+        final ImageButton b = findViewById(R.id.home_Button);
         a.setOnClickListener(new View.OnClickListener()
         {
 
