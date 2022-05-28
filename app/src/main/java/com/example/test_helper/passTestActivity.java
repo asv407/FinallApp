@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -28,8 +27,7 @@ public class passTestActivity extends AppCompatActivity
     private void createSpinner(HashSet<String> s)
     {
         String[] names = new String[s.size() + 1];
-        names[0] = "Выберите тест";
-        int i = 1;
+        int i = 0;
         for (String ii : s)
         {
             if (ii.equals(""))
@@ -39,11 +37,12 @@ public class passTestActivity extends AppCompatActivity
             names[i] = ii;
             i++;
         }
+        names[i] = "Выберите тест!";
         Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, names);
+        CustomAdapter adapter = new CustomAdapter(this, android.R.layout.simple_spinner_item, names);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
+        spinner.setSelection(names.length - 1);
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener()
         {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
@@ -62,6 +61,31 @@ public class passTestActivity extends AppCompatActivity
         };
         spinner.setOnItemSelectedListener(itemSelectedListener);
     }
+
+    private HashSet<String> getTestNames()
+    {
+        HashSet<String> s = new HashSet<>();
+        try
+        {
+            File sdcard = Environment.getExternalStorageDirectory();
+            File f = new File(sdcard, "tests.csv");
+            BufferedReader reader = new BufferedReader(new FileReader(f));
+            String line = reader.readLine();
+            while (line != null)
+            {
+                line = line.replace('~', '\n');
+                String[] words = line.split(";");
+                words[0] = words[0].replace('ў', ';');
+                s.add(words[0]);
+                line = reader.readLine();
+            }
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -78,24 +102,7 @@ public class passTestActivity extends AppCompatActivity
         }
 
         HashSet<String> s = new HashSet<>();
-        try
-        {
-            File sdcard = Environment.getExternalStorageDirectory();
-            File f = new File(sdcard,"tests.csv");
-            BufferedReader reader = new BufferedReader(new FileReader(f));
-            String line = reader.readLine();
-            while (line != null)
-            {
-                line = line.replace('~', '\n');
-                String[] words = line.split(";");
-                words[0] = words[0].replace('ў', ';');
-                s.add(words[0]);
-                line = reader.readLine();
-            }
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        s = getTestNames();
         createSpinner(s);
         final ImageButton a = findViewById(R.id.next_Button);
         final ImageButton b = findViewById(R.id.home_Button);

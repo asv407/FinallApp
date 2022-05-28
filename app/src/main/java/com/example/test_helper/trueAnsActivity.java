@@ -17,7 +17,14 @@ public class trueAnsActivity extends AppCompatActivity
     private RadioButton radioButton3;
     private RadioButton radioButton4;
     private TextView textView;
-
+    private void start()
+    {
+        radioButton1 = findViewById(R.id.radio1);
+        radioButton2 = findViewById(R.id.radio2);
+        radioButton3 = findViewById(R.id.radio3);
+        radioButton4 = findViewById(R.id.radio4);
+        textView = findViewById(R.id.textQuestion);
+    }
     private String[] starting()
     {
         String gf = RadioActivity.tests.get(numberTest);
@@ -96,11 +103,7 @@ public class trueAnsActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_true_ans);
-        radioButton1 = findViewById(R.id.radio1);
-        radioButton2 = findViewById(R.id.radio2);
-        radioButton3 = findViewById(R.id.radio3);
-        radioButton4 = findViewById(R.id.radio4);
-        textView = findViewById(R.id.textQuestion);
+        start();
         if (numberTest == 0)
         {
             starting();

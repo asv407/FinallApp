@@ -111,12 +111,8 @@ public class RadioActivity extends AppCompatActivity
         return str1;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
+    private void start()
     {
-        setContentView(R.layout.activity_radio);
-        super.onCreate(savedInstanceState);
-
         Bundle arguments = getIntent().getExtras();
         name = arguments.get("testName").toString();
         radioGroup11 = findViewById(R.id.radioGroup1);
@@ -125,7 +121,10 @@ public class RadioActivity extends AppCompatActivity
         radioButton3 = findViewById(R.id.radio3);
         radioButton4 = findViewById(R.id.radio4);
         textView = findViewById(R.id.textQuestion);
+    }
 
+    private void getQuestions()
+    {
         try
         {
             File sdcard = Environment.getExternalStorageDirectory();
@@ -150,75 +149,91 @@ public class RadioActivity extends AppCompatActivity
                 arrayList.add(words);
                 line = reader.readLine();
             }
-        } catch (IOException e){
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
-        if(arrayList.size() == 0)
+        if (arrayList.size() == 0)
         {
             Intent intent = new Intent(RadioActivity.this, passTestActivity.class);
             intent.putExtra("isNorm", false);
             startActivity(intent);
         }
-        else
+    }
+
+    private void fillRadio()
+    {
+        words = arrayList.get(i);
+        textView.setText(words[1]);
+        radioButton1.setText(words[2]);
+        radioButton2.setText(words[3]);
+        radioButton3.setText(words[4]);
+        radioButton4.setText(words[5]);
+        radioGroup11.check(R.id.radio1);
+    }
+
+    private void rememberAns()
+    {
+        String str1 = "";
+        String add;
+        add = words[1];
+        add = add.replace(';', 'ў');
+        str1 += add;
+        str1 += ";";
+        add = words[2];
+        add = add.replace(';', 'ў');
+        str1 += add;
+        str1 += ";";
+        add = words[3];
+        add = add.replace(';', 'ў');
+        str1 += add;
+        str1 += ";";
+        add = words[4];
+        add = add.replace(';', 'ў');
+        str1 += add;
+        str1 += ";";
+        add = words[5];
+        add = add.replace(';', 'ў');
+        str1 += add;
+        str1 += ";";
+        str1 = whoCheck(str1);
+        str1 += trueAns();
+        tests.add(str1);
+    }
+
+    private void showRes()
+    {
+        Intent intent = new Intent(RadioActivity.this, resultsBackgroundActivity.class);
+        intent.putExtra("result", res);
+        intent.putExtra("countTrue", countTrueAns);
+        intent.putExtra("maxBalls", maxBalls);
+        intent.putExtra("nameTest", name);
+        intent.putExtra("count", arrayList.size());
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        setContentView(R.layout.activity_radio);
+        super.onCreate(savedInstanceState);
+        start();
+        getQuestions();
+        fillRadio();
+        final ImageButton b = findViewById(R.id.nexts_Button);
+        b.setOnClickListener(new View.OnClickListener()
         {
-            words = arrayList.get(i);
-            textView.setText(words[1]);
-            radioButton1.setText(words[2]);
-            radioButton2.setText(words[3]);
-            radioButton3.setText(words[4]);
-            radioButton4.setText(words[5]);
-        }
-
-
-        final ImageButton b = (ImageButton) findViewById(R.id.nexts_Button);
-        b.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick (View v)
+            public void onClick(View v)
             {
-                String str1 = "";
-                String add;
-                add = words[1];
-                add = add.replace(';', 'ў');
-                str1 += add;
-                str1 += ";";
-                add = words[2];
-                add = add.replace(';', 'ў');
-                str1 += add;
-                str1 += ";";
-                add = words[3];
-                add = add.replace(';', 'ў');
-                str1 += add;
-                str1 += ";";
-                add = words[4];
-                add = add.replace(';', 'ў');
-                str1 += add;
-                str1 += ";";
-                add = words[5];
-                add = add.replace(';', 'ў');
-                str1 += add;
-                str1 += ";";
-                str1 = whoCheck(str1);
-                str1 += trueAns();
-                tests.add(str1);
+                rememberAns();
                 i++;
                 if (i >= arrayList.size())
                 {
-                    Intent intent = new Intent(RadioActivity.this, resultsBackgroundActivity.class);
-                    intent.putExtra("result", res);
-                    intent.putExtra("countTrue", countTrueAns);
-                    intent.putExtra("maxBalls", maxBalls);
-                    intent.putExtra("nameTest", name);
-                    intent.putExtra("count", arrayList.size());
-                    startActivity(intent);
+                    showRes();
                 } else
                 {
-                    words = arrayList.get(i);
-                    radioGroup11.check(R.id.radio1);
-                    textView.setText(words[1]);
-                    radioButton1.setText(words[2]);
-                    radioButton2.setText(words[3]);
-                    radioButton3.setText(words[4]);
-                    radioButton4.setText(words[5]);
+                    fillRadio();
                 }
 
             }

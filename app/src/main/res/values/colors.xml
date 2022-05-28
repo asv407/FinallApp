@@ -18,4 +18,5 @@
     <color name="trueColor">#50C878</color>
     <color name="falseColor">#FF2400</color>
     <color name="best_white">#FFFFF0</color>
+    <color name="radioColor">#343E40</color>
 </resources>
