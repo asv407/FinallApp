@@ -17,30 +17,30 @@ public class resultsBackgroundActivity extends AppCompatActivity
         {
             TextView textView = (TextView) findViewById(R.id.text);
             Bundle arguments = getIntent().getExtras();
-            String greetings = "Поздравляем! Вы прошли тест " + arguments.getString("nameTest");
-            greetings += "\n\nбаллов";
+            String greetings = getResources().getString(R.string.congrat) + " '" + arguments.getString("nameTest") + "' ";
+            greetings += "\n\n" + getResources().getString(R.string.ball) + " ";
             greetings += String.valueOf(arguments.getInt("result"));
-            greetings += " из ";
+            greetings += " " + getResources().getString(R.string.of) + " ";
             greetings += String.valueOf(arguments.getInt("maxBalls"));
             greetings += "\n\n";
-            greetings += " правильных ответов ";
+            greetings += getResources().getString(R.string.correct) + "\n";
             greetings += String.valueOf(arguments.getInt("countTrue"));
-            greetings += " из ";
+            greetings += " " + getResources().getString(R.string.of) + " ";
             greetings += String.valueOf(arguments.getInt("count"));
             textView.setText(greetings);
         } else
         {
             TextView textView = (TextView) findViewById(R.id.text);
             Bundle arguments = getIntent().getExtras();
-            String greetings = "Поздравляем! Вы прошли тест " + arguments.getString("nameTest");
-            greetings += "\nбаллов";
+            String greetings = getResources().getString(R.string.congrat) + " '" + arguments.getString("nameTest") + "' ";
+            greetings += "\n\n" + getResources().getString(R.string.ball) + " ";
             greetings += String.valueOf(arguments.getInt("result"));
-            greetings += " из ";
+            greetings += " " + getResources().getString(R.string.of) + " ";
             greetings += String.valueOf(arguments.getInt("maxBalls"));
-            greetings += "\n";
-            greetings += " правильных ответов ";
+            greetings += "\n\n";
+            greetings += getResources().getString(R.string.correct) + "\n";
             greetings += String.valueOf(arguments.getInt("countTrue"));
-            greetings += " из ";
+            greetings += " " + getResources().getString(R.string.of) + " ";
             greetings += String.valueOf(arguments.getInt("count"));
             textView.setText(greetings);
             textView.setTextSize(24);

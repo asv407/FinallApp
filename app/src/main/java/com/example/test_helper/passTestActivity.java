@@ -1,5 +1,7 @@
 package com.example.test_helper;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -37,7 +39,7 @@ public class passTestActivity extends AppCompatActivity
             names[i] = ii;
             i++;
         }
-        names[i] = "Выберите тест!";
+        names[i] = getResources().getString(R.string.chooseTest);
         Spinner spinner = findViewById(R.id.spinner);
         CustomAdapter adapter = new CustomAdapter(this, android.R.layout.simple_spinner_item, names);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -67,8 +69,9 @@ public class passTestActivity extends AppCompatActivity
         HashSet<String> s = new HashSet<>();
         try
         {
-            File sdcard = Environment.getExternalStorageDirectory();
-            File f = new File(sdcard, "tests.csv");
+            ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+            File ff = contextWrapper.getDir("tests", Context.MODE_PRIVATE);
+            File f = new File(ff.getPath(), "tests.csv");
             BufferedReader reader = new BufferedReader(new FileReader(f));
             String line = reader.readLine();
             while (line != null)
@@ -97,7 +100,7 @@ public class passTestActivity extends AppCompatActivity
         Bundle arguments = getIntent().getExtras();
         if (!arguments.getBoolean("isNorm"))
         {
-            Toast toast = Toast.makeText(this, "Не удалось найти тест!",Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, R.string.notFound,Toast.LENGTH_LONG);
             toast.show();
         }
 

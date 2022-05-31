@@ -95,7 +95,7 @@ public class trueAnsActivity extends AppCompatActivity
         radioButton2.setText("");
         radioButton3.setText("");
         radioButton4.setText("");
-        textView.setText("Кликните вне окна чтобы продолжить!");
+        textView.setText(R.string.click);
     }
 
     @Override

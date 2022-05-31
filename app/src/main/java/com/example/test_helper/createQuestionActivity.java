@@ -1,22 +1,29 @@
 package com.example.test_helper;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.res.ResourcesCompat;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -31,9 +38,60 @@ public class createQuestionActivity extends AppCompatActivity
     private EditText trueAns;
     private EditText balls;
     private ImageButton b;
+    private ImageButton a;
     private ImageButton c;
     private FileOutputStream writer;
     private String name;
+    private String imageBit = "";
+    public static final int GET_FROM_GALLERY = 3;
+    private boolean checkImage()
+    {
+        if(imageBit.equals(""))
+        {
+            Toast toast = Toast.makeText(createQuestionActivity.this, R.string.iNotFound, Toast.LENGTH_LONG);
+            toast.show();
+            return false;
+        }
+        return true;
+    }
+    private String BitMapToString(Bitmap bitmap)
+    {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int halfWidth = width / 4;
+        int halfHeight = height / 4;
+        bitmap = Bitmap.createScaledBitmap(bitmap, halfWidth,
+                halfHeight, false);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        Bitmap bitmap = null;
+        if (requestCode == GET_FROM_GALLERY && resultCode == Activity.RESULT_OK)
+        {
+            Uri selectedImage = data.getData();
+            try
+            {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                imageBit = BitMapToString(bitmap);
+            } catch (FileNotFoundException e)
+            {
+                Toast toast = Toast.makeText(createQuestionActivity.this, R.string.downloadError, Toast.LENGTH_LONG);
+                toast.show();
+            } catch (IOException e)
+            {
+                Toast toast = Toast.makeText(createQuestionActivity.this, R.string.downloadError, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
+    }
+
     private void confirming()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(createQuestionActivity.this);
@@ -41,16 +99,57 @@ public class createQuestionActivity extends AppCompatActivity
         builder.setCancelable(true);
         builder.setIcon(R.drawable.comet);
         // Кнопка ОК
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
                 dialog.dismiss();
                 Intent intent = new Intent(createQuestionActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
                 dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+    private void confirmingImage()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(createQuestionActivity.this);
+        builder.setTitle("Что вы хотите сделать?");
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.comet);
+        // Кнопка ОК
+        builder.setPositiveButton(R.string.newImage, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                dialog.dismiss();
+                startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), GET_FROM_GALLERY);
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.oldImage, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                dialog.dismiss();
+                if(checkImage())
+                {
+                    Intent intent = new Intent(createQuestionActivity.this, showImage.class);
+                    RadioActivity.bitString = imageBit;
+                    startActivity(intent);
+                }
             }
         });
         builder.show();
@@ -79,6 +178,7 @@ public class createQuestionActivity extends AppCompatActivity
         trueAns = findViewById(R.id.trueAns);
         balls = findViewById(R.id.balls);
         b = findViewById(R.id.next_Buttons);
+        a = findViewById(R.id.image_Button);
         c = findViewById(R.id.finish_Button);
     }
     private String fieldToLine()
@@ -155,8 +255,9 @@ public class createQuestionActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_question);
-        File sdcard = Environment.getExternalStorageDirectory();
-        File f = new File(sdcard, "tests.csv");
+        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+        File ff = contextWrapper.getDir("tests", Context.MODE_PRIVATE);
+        File f = new File(ff.getPath(), "tests.csv");
         try
         {
             writer = new FileOutputStream(f, true);
@@ -164,6 +265,15 @@ public class createQuestionActivity extends AppCompatActivity
         {
         }
         start();
+        a.setOnClickListener(new View.OnClickListener()
+        {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onClick(View v)
+            {
+                confirmingImage();
+            }
+        });
         b.setOnClickListener(new View.OnClickListener()
         {
             @SuppressLint("UseCompatLoadingForDrawables")
@@ -196,15 +306,17 @@ public class createQuestionActivity extends AppCompatActivity
                     newQuestion += ";";
                     add = balls.getText().toString();
                     newQuestion += add;
+                    newQuestion += ";";
+                    newQuestion += imageBit;
                     try
                     {
                         int gf = Integer.parseInt(balls.getText().toString());
                     } catch (IllegalArgumentException | NullPointerException e)
                     {
-                        warnings(getResources().getString(R.string.dialog_message_balls), getResources().getDrawable( R.drawable.icon));
+                        warnings(getResources().getString(R.string.dialog_message_balls), getResources().getDrawable(R.drawable.icon));
                         ban = true;
                     }
-                    if(!ban)
+                    if (!ban)
                     {
                         newQuestion = newQuestion.replace('\n', '~');
                         newQuestion += '\n';

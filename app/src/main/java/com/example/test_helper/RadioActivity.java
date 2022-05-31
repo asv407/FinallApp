@@ -1,13 +1,19 @@
 package com.example.test_helper;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,7 +40,7 @@ public class RadioActivity extends AppCompatActivity
     private int res = 0;
     private int countTrueAns = 0;
     private int maxBalls = 0;
-
+    public static String  bitString = "";
     private String trueAns()
     {
         String str = radioButton1.getText().toString();
@@ -127,8 +133,9 @@ public class RadioActivity extends AppCompatActivity
     {
         try
         {
-            File sdcard = Environment.getExternalStorageDirectory();
-            File f = new File(sdcard, "tests.csv");
+            ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+            File ff = contextWrapper.getDir("tests", Context.MODE_PRIVATE);
+            File f = new File(ff.getPath(), "tests.csv");
             reader = new BufferedReader(new FileReader(f));
             String line = reader.readLine();
             while (line != null)
@@ -211,16 +218,49 @@ public class RadioActivity extends AppCompatActivity
         intent.putExtra("count", arrayList.size());
         startActivity(intent);
     }
-
+    private boolean checkImage()
+    {
+        if(words.length < 9)
+        {
+            Toast toast = Toast.makeText(RadioActivity.this, R.string.iNotFound, Toast.LENGTH_LONG);
+            toast.show();
+            return false;
+        }
+        else
+        {
+            if(words[8].equals(""))
+            {
+                Toast toast = Toast.makeText(RadioActivity.this, R.string.iNotFound, Toast.LENGTH_LONG);
+                toast.show();
+                return  false;
+            }
+        }
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         setContentView(R.layout.activity_radio);
         super.onCreate(savedInstanceState);
+        bitString = "";
         start();
         getQuestions();
         fillRadio();
         final ImageButton b = findViewById(R.id.nexts_Button);
+        final ImageButton a = findViewById(R.id.image_Button);
+        a.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(checkImage())
+                {
+                    Intent intent = new Intent(RadioActivity.this, showImage.class);
+                    bitString = words[8];
+                    startActivity(intent);
+                }
+            }
+        });
         b.setOnClickListener(new View.OnClickListener()
         {
             @Override
