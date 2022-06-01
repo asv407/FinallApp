@@ -58,8 +58,8 @@ public class createQuestionActivity extends AppCompatActivity
     {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        int halfWidth = width / 4;
-        int halfHeight = height / 4;
+        int halfWidth = width / 2;
+        int halfHeight = height / 2;
         bitmap = Bitmap.createScaledBitmap(bitmap, halfWidth,
                 halfHeight, false);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -80,6 +80,8 @@ public class createQuestionActivity extends AppCompatActivity
             {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 imageBit = BitMapToString(bitmap);
+                Toast toast = Toast.makeText(createQuestionActivity.this, R.string.iAdd, Toast.LENGTH_LONG);
+                toast.show();
             } catch (FileNotFoundException e)
             {
                 Toast toast = Toast.makeText(createQuestionActivity.this, R.string.downloadError, Toast.LENGTH_LONG);
@@ -249,6 +251,7 @@ public class createQuestionActivity extends AppCompatActivity
         varD.getText().clear();
         trueAns.getText().clear();
         balls.getText().clear();
+        imageBit= "";
     }
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -331,6 +334,7 @@ public class createQuestionActivity extends AppCompatActivity
                         }
                     }
                 }
+
             }
         });
         c.setOnClickListener( new View.OnClickListener() {

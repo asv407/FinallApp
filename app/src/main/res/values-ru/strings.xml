@@ -8,6 +8,8 @@
     <string name="oldImage"> Посмотреть текущее фото </string>
     <string name="stop">В начало</string>
     <string name="trueAnswer">Верные ответы</string>
+    <string name="iAdd">картинка добавлена</string>
+    <string name="questionNumber">вопрос №</string>
     <string name="dialog_title">Некоторые поля заполнены неверно</string>
     <string name="dialog_message_balls">Количество баллов должно быть числом</string>
     <string name="dialog_message">Номер правильного варианта ответа - целое число от 1 до 4</string>

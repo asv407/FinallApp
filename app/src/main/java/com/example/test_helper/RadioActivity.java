@@ -32,6 +32,7 @@ public class RadioActivity extends AppCompatActivity
     private RadioButton radioButton3;
     private RadioButton radioButton4;
     private TextView textView;
+    private TextView numView;
     private int i = 0;
     private ArrayList<String[]> arrayList = new ArrayList<>();
     private BufferedReader reader;
@@ -127,6 +128,7 @@ public class RadioActivity extends AppCompatActivity
         radioButton3 = findViewById(R.id.radio3);
         radioButton4 = findViewById(R.id.radio4);
         textView = findViewById(R.id.textQuestion);
+        numView = findViewById(R.id.numberQuestion);
     }
 
     private void getQuestions()
@@ -171,6 +173,7 @@ public class RadioActivity extends AppCompatActivity
     private void fillRadio()
     {
         words = arrayList.get(i);
+        numView.setText(getResources().getString(R.string.questionNumber) + Integer.toString(i + 1));
         textView.setText(words[1]);
         radioButton1.setText(words[2]);
         radioButton2.setText(words[3]);

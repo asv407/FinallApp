@@ -25,7 +25,7 @@ public class passTestActivity extends AppCompatActivity
 {
     private EditText name;
     private String item;
-    private boolean ban = false;
+    private int ban = -1;
     private void createSpinner(HashSet<String> s)
     {
         String[] names = new String[s.size() + 1];
@@ -53,12 +53,12 @@ public class passTestActivity extends AppCompatActivity
                 item = (String) parent.getItemAtPosition(position);
                 ((TextView) parent.getChildAt(0)).setTextColor(text_color);
                 ((TextView) parent.getChildAt(0)).setTextSize(22);
-                ban = true;
+                ban++;
             }
 
             public void onNothingSelected(AdapterView<?> adapterView)
             {
-                ban = false;
+
             }
         };
         spinner.setOnItemSelectedListener(itemSelectedListener);
@@ -114,7 +114,7 @@ public class passTestActivity extends AppCompatActivity
 
             public void onClick(View v)
             {
-                if (ban)
+                if (ban > 0)
                 {
                     Intent intent = new Intent(passTestActivity.this, RadioActivity.class);
                     intent.putExtra("testName", item);

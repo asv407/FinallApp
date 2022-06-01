@@ -25,6 +25,8 @@
     <string name="imageToQues"> image to the question </string>
     <string name="click"> Click outside the window to continue!</string>
     <string name="trueAnswer">correct answers</string>
+    <string name="questionNumber">question #</string>
+    <string name="iAdd">image upload!</string>
     <string name="downloadError"> Failed to upload photo!</string>
     <string name="notFound"> Test not found </string>
     <string name="iNotFound"> Image not found </string>

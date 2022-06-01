@@ -26,7 +26,9 @@
     <string name="click"> Click outside the window to continue!</string>
     <string name="downloadError"> Failed to upload photo!</string>
     <string name="of"> of </string>
+    <string name="iAdd">image upload!</string>
     <string name="trueAnswer">correct answers</string>
+    <string name="questionNumber">question #</string>
     <string name="ball">balls </string>
     <string name="correct"> correct answers </string>
     <string name="title_activity_login">LoginActivity</string>

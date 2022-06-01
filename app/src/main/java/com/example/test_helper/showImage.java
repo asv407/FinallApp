@@ -33,8 +33,8 @@ public class showImage extends AppCompatActivity
         Bitmap bitmap = StringToBitMap(gf);
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        int halfWidth = width * 4;
-        int halfHeight = height * 4;
+        int halfWidth = width * 2;
+        int halfHeight = height * 2;
         bitmap = Bitmap.createScaledBitmap(bitmap, halfWidth,
                 halfHeight, false);
         imageView.setImageBitmap(bitmap);
