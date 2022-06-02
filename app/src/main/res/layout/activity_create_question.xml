@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".createQuestionActivity">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/backGround"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/phone_1"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/questionName"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/questionName"
+                    android:textColor="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/varA"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/varA"
+                    android:textColor="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/varB"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/varB"
+                    android:textColor="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/varC"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/varC"
+                    android:textColor="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/varD"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/varD"
+                    android:textColor="@color/buttons1" />
+
+                <EditText
+                    android:id="@+id/trueAns"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:hint="@string/trueAns"
+                    android:textColor="@color/buttons1"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/balls"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:textColor="@color/buttons1"
+                    android:inputType="number"
+                    android:hint="@string/balls" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/finish_Button"
+                        android:src="@drawable/home_button"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageButton
+                        android:id="@+id/image_Button"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/image_button" />
+
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageButton
+                        android:id="@+id/next_Buttons"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/next_button" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
